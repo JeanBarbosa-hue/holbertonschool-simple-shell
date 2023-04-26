@@ -1,22 +1,22 @@
 #include "shell.h"
 
-int main(__attribute__((unused)) int ac ,__attribute__((unused))char **argv)
+int main(__attribute__((unused)) int ac, __attribute__((unused))char **argv)
 {
 	char *prompt = "$ ";
 	char *lineptr = NULL;
 	size_t n = 0;
 	ssize_t char_read;
 	char **save = NULL;
+	int should_exit = 0;
 
-	while(1)
+	while (!should_exit)
 	{
 		save = NULL;
 		lineptr = NULL;
 		n = 0;
 		if (isatty(0))
-			printf("%s", prompt);	
+			printf("%s", prompt);
 		char_read = getline(&lineptr, &n, stdin);
-
 		if (char_read == -1)
 		{
 			free(lineptr);
@@ -25,8 +25,16 @@ int main(__attribute__((unused)) int ac ,__attribute__((unused))char **argv)
 		save = parser(lineptr, " \n");
 		free(lineptr);
 		if (save[0])
-			exec(save);
-		else 
+		{
+			if (strcmp(save[0], "exit") == 0)
+			{
+				exec_exit();
+				should_exit = 1;
+			}
+			else
+				exec(save);
+		}
+		else
 			free(save);
 	}
 
