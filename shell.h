@@ -14,5 +14,6 @@ char **parser(char *token, char *delim);
 int exec(char **argv);
 char *directions(char *cmnd);
 void free_array(char **token);
+extern void exec_exit(void);
 
 #endif
