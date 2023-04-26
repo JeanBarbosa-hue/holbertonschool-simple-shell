@@ -15,5 +15,6 @@ int exec(char **argv);
 char *directions(char *cmnd);
 void free_array(char **token);
 extern void exec_exit(void);
+void print_env(void);
 
 #endif
