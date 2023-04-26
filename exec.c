@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * exec - execute a command with arguments
+ * @save: an array of strings containing the command and its arguments
+ * Return: 1 on success
+ */
+
 int exec(char **save)
 {
 	char *cmnd = NULL;
