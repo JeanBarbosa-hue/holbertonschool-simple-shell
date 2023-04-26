@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * directions - search for the absolute path of a command in the directories
+ *              listed in the PATH environment variable
+ * @cmnd: the name of the command to search for
+ * Return: a pointer to a string containing the absolute path of the command,
+ *         or NULL if the command was not found
+ */
+
 char *directions(char *cmnd)
 {
 	char *path, *path_copy, *path_token, *file_path;
